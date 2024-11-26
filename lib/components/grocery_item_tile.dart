@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class GroceryItemTile extends StatelessWidget {
-
   final String itemName;
   final String itemPrice;
   final String imagePath;
   final String rating;
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
-  GroceryItemTile({
+  const GroceryItemTile({
     super.key,
     required this.itemName,
     required this.itemPrice,
@@ -47,17 +46,9 @@ class GroceryItemTile extends StatelessWidget {
             itemName,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          // Price
+          // Price Button
           MaterialButton(
-            onPressed: () {
-              // Example action: Print item name
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Added $itemName to the cart!'),
-                  duration: const Duration(seconds: 2),
-                ),
-              );
-            },
+            onPressed: onPressed,
             color: Colors.green,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
@@ -76,7 +67,7 @@ class GroceryItemTile extends StatelessWidget {
             children: [
               const Icon(Icons.star, color: Colors.amber, size: 16),
               Text(
-                rating.toString(),
+                rating,
                 style: const TextStyle(fontSize: 14),
               ),
             ],
